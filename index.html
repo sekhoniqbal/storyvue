@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style media="screen">
+    .hightlight{
+      background: yellow;
+    }
+    </style>
+
+  </head>
+  <body>
+    <div id="myapp">
+      <div v-if="page=='storylist'">
+        <h2>StoryList</h2>
+        <ol>
+          <li v-for="(story, key ) in stories" v-bind:id="key" v-on:click="openStory">{{story.title}}</li>
+        </ol>
+      </div> <!---- end of stoyr list page---->
+      <div v-if="page=='story'">
+        <h2>{{currentStory.title}}</h2>
+        <p v-for="para in paras">
+          <span v-for="word in para" v-on:click="hightlighttoggle" v-bind:class="{'new':(newword(word))}">{{word}}<span>
+        </p>
+        <button  v-on:click="savewords" name="button">Save Highlighted Words</button>
+        <button  v-on:click="openStoryList" name="button">Go back to story</button>
+      </div>
+  </div>
+  </body>
+  <script src="index.js"></script>
+</html>
